@@ -1,123 +1,129 @@
-import { motion } from 'framer-motion';
-import { FaArrowRight, FaLaptopCode, FaShieldAlt } from 'react-icons/fa';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { FaArrowRight, FaLaptopCode, FaShieldAlt, FaUsers, FaStar } from 'react-icons/fa';
 
 // Variants pour animations
 const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.8, ease: 'easeOut' },
-    },
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
 };
 
 const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95, rotate: -5 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        rotate: 0,
-        transition: { duration: 1, ease: 'easeOut' },
-    },
+  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
 };
 
 const buttonVariants = {
-    hover: {
-        scale: 1.05,
-        boxShadow: '0px 6px 20px rgba(255,105,180,0.4)',
-        transition: { duration: 0.3 },
-    },
+  hover: { scale: 1.05, boxShadow: '0px 6px 20px rgba(255, 105, 180, 0.4)', transition: { duration: 0.3 } },
+  tap: { scale: 0.95 },
+};
+
+const statsVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut', delay: 0.4 } },
 };
 
 const Hero = () => {
-    return (
-        <section className="mt-12 flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-50 to-white px-6 py-16 md:px-16 md:py-24">
-            <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2">
-                {/* Texte */}
-                <motion.div
-                    className="space-y-6 text-center md:text-left"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.2 } },
-                    }}
-                >
-                    <motion.h1
-                        className="text-4xl leading-tight font-extrabold text-pink-600 md:text-5xl lg:text-6xl"
-                        variants={textVariants}
-                    >
-                        Boostez votre avenir avec Omiie
-                    </motion.h1>
-                    <motion.h2
-                        className="text-xl font-semibold text-gray-800 md:text-2xl"
-                        variants={textVariants}
-                    >
-                        Formations et services numériques haut de gamme
-                    </motion.h2>
-                    <motion.p
-                        className="mx-auto max-w-lg text-base text-gray-600 md:mx-0 md:text-lg"
-                        variants={textVariants}
-                    >
-                        Découvrez nos formations en développement web,
-                        cybersécurité, marketing digital, e-learning et bien
-                        plus. Progressez avec des experts passionnés pour un
-                        futur connecté.
-                    </motion.p>
+  const { scrollY } = useScroll();
 
-                    {/* Boutons */}
-                    <motion.div
-                        className="flex flex-wrap justify-center gap-4 md:justify-start"
-                        variants={textVariants}
-                    >
-                        <motion.a
-                            href="#services"
-                            className="inline-flex items-center rounded-full bg-pink-600 px-8 py-3 text-lg font-semibold text-white transition hover:bg-pink-700"
-                            variants={buttonVariants}
-                            whileHover="hover"
-                        >
-                            Commencer <FaArrowRight className="ml-2" />
-                        </motion.a>
-                        <motion.a
-                            href="#formations"
-                            className="inline-flex items-center rounded-full border border-pink-600 bg-white px-8 py-3 text-lg font-semibold text-pink-600 transition hover:bg-pink-50"
-                            variants={buttonVariants}
-                            whileHover="hover"
-                        >
-                            Explorer nos formations
-                        </motion.a>
-                    </motion.div>
+  return (
+    <>
+      <section
+        className="relative h-screen min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-white px-4 py-16 sm:px-6 md:px-12 md:py-24 overflow-hidden"
+        aria-label="Section principale de Omiie"
+      >
+        {/* Particules animées */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute w-3 h-3 top-1/5 left-1/4 bg-pink-300 rounded-full opacity-30 animate-bounce"></div>
+          <div className="absolute w-4 h-4 top-3/4 right-1/5 bg-pink-200 rounded-full opacity-30 animate-bounce delay-200"></div>
+          <div className="absolute w-2 h-2 bottom-1/4 left-1/3 bg-pink-300 rounded-full opacity-30 animate-bounce delay-400"></div>
+          <div className="absolute w-3 h-3 top-1/2 right-1/4 bg-pink-200 rounded-full opacity-30 animate-bounce delay-600"></div>
+        </div>
 
-                    {/* Icônes supplémentaires */}
-                    <motion.div
-                        className="mt-6 flex justify-center gap-6 md:justify-start"
-                        variants={textVariants}
-                    >
-                        <div className="flex items-center gap-2 text-pink-500">
-                            <FaLaptopCode size={24} /> Dev Web
-                        </div>
-                        <div className="flex items-center gap-2 text-pink-500">
-                            <FaShieldAlt size={24} /> Cybersécurité
-                        </div>
-                    </motion.div>
-                </motion.div>
+        <div className="relative mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+          {/* Texte */}
+          <motion.div
+            className="space-y-6 sm:space-y-8 text-center md:text-left"
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+          >
+            <motion.div
+              className="inline-block bg-pink-500 text-white text-sm sm:text-base font-semibold px-4 py-2 rounded-full mb-4"
+              variants={textVariants}
+              whileHover={{ scale: 1.1 }}
+            >
+              Leader en solutions numériques
+            </motion.div>
+            <motion.h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-pink-500 leading-tight"
+              variants={textVariants}
+            >
+              Transformez votre avenir avec Omiie
+            </motion.h1>
+            <motion.h2
+              className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800"
+              variants={textVariants}
+            >
+              Formations et services d’excellence
+            </motion.h2>
+            <motion.p
+              className="mx-auto max-w-md sm:max-w-lg text-sm sm:text-base md:text-lg text-gray-600"
+              variants={textVariants}
+            >
+              Maîtrisez le développement web, la cybersécurité, le marketing digital, l’e-learning, l’e-commerce et bien plus.
+            </motion.p>
 
-                {/* Image */}
-                <motion.div
-                    className="flex justify-center md:justify-end"
-                    initial="hidden"
-                    animate="visible"
-                    variants={imageVariants}
-                >
-                    <img
-                        src="https://images.unsplash.com/photo-1612831455540-1017fc8d6a6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Illustration services numériques Omiie"
-                        className="h-auto max-w-full rounded-3xl object-cover shadow-2xl transition-transform hover:scale-105 md:max-w-lg"
-                        loading="lazy"
-                    />
-                </motion.div>
-            </div>
-        </section>
-    );
+            {/* Boutons */}
+            <motion.div className="flex flex-wrap justify-center gap-4 md:justify-start" variants={textVariants}>
+              <motion.a
+                href="#services"
+                className="inline-flex items-center bg-pink-500 text-white rounded-full px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Commencer <FaArrowRight className="ml-2" />
+              </motion.a>
+              <motion.a
+                href="#formations"
+                className="inline-flex items-center border-2 border-pink-500 bg-white text-pink-500 rounded-full px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Nos formations
+              </motion.a>
+            </motion.div>
+
+            {/* Statistiques */}
+            <motion.div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-4 sm:gap-6 md:justify-start" variants={statsVariants}>
+              <div className="flex items-center gap-3 text-pink-500"><FaUsers size={24} /><span className="font-semibold">+1000 apprenants</span></div>
+              <div className="flex items-center gap-3 text-pink-500"><FaStar size={24} /><span className="font-semibold">4.9/5 évaluations</span></div>
+              <div className="flex items-center gap-3 text-pink-500"><FaLaptopCode size={24} /><span className="font-semibold">+10 formations</span></div>
+            </motion.div>
+          </motion.div>
+
+          {/* Image */}
+          <motion.div className="flex justify-center md:justify-end relative" initial="hidden" animate="visible" variants={imageVariants}>
+            <motion.img
+              src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80&fm=webp"
+              alt="Illustration services numériques Omiie"
+              className="h-auto max-w-full w-full sm:max-w-md md:max-w-lg rounded-3xl object-cover shadow-2xl"
+              style={{ y: useTransform(scrollY, [0, 300], [0, -50]) }}
+              loading="lazy"
+              whileHover={{ scale: 1.05, y: -15 }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.div
+              className="absolute -bottom-4 -right-4 w-20 sm:w-24 h-20 sm:h-24 bg-pink-500 opacity-20 rounded-full blur-xl"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            ></motion.div>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  );
 };
 
 export default Hero;
