@@ -1,11 +1,16 @@
 import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import ServicesSwiper from "@/components/ServicesSwiper";
+import WhatsAppButton from "@/components/WhatsappButton";
 
 export default function Home() {
   return (
     <div className="test">
       <Navbar/>
-      <h1 className="mt-12xl font-bold text-blue-500">En developpement</h1>
+        <Hero/>
+        <ServicesSwiper/>
+        <WhatsAppButton />
       <Footer/>
     </div>
   );
