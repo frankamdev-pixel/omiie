@@ -164,9 +164,9 @@ export default function Navbar({
     const menuLinks = [
         { name: 'Accueil', icon: <Home size={18} />, href: '/' },
         {
-            name: 'Portfolio',
+            name: 'Services offerts',
             icon: <FolderOpen size={18} />,
-            href: '/portfolio',
+            href: '/services',
         },
         { name: 'À propos', icon: <Info size={18} />, href: '/about' },
         { name: 'Contact', icon: <Phone size={18} />, href: '/contact' },
@@ -177,7 +177,7 @@ export default function Navbar({
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
                 {/* Logo */}
                 <Link href="/" className="text-2xl font-bold tracking-wide">
-                    Omiie Services
+                    Omiie
                 </Link>
 
                 {/* Liens Desktop */}

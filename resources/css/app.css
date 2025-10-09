@@ -1,4 +1,4 @@
- @import 'tailwindcss';
+@import 'tailwindcss';
 
 @plugin 'tailwindcss-animate';
 
@@ -6,6 +6,9 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
+body, html {
+  overflow-x: hidden;
+}
 
 @theme {
     --font-sans:
@@ -140,5 +143,4 @@
     body {
         @apply bg-background text-foreground;
     }
-} 
-
+}
