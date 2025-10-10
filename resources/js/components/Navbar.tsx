@@ -472,7 +472,7 @@ export default function Navbar() {
                                 href="/login"
                                 className="omiie-btn rounded-full px-4 py-2 text-sm font-semibold"
                             >
-                                Se connecter
+                                S'inscrire
                             </Link>
                         )}
 
