@@ -220,7 +220,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import avatar from '../pages/avatar.png';
 
-// Variants pour animations fluides
+
 const navVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: {
@@ -359,7 +359,7 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
                         <motion.img
-                            src="/logo.png" // Remplace par ton logo
+                            src="./assets/logo.png" // Remplace par ton logo
                             alt="Omiie Logo"
                             className="h-10 w-10"
                             whileHover={{ scale: 1.1, rotate: 5 }}
