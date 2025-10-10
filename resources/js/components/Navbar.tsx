@@ -15,9 +15,11 @@ import avatar from '../pages/avatar.png';
 export default function Navbar() {
     const { auth } = usePage().props;
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         const handleClickOutside = (e: MouseEvent) => {
             if (
                 dropdownRef.current &&
@@ -26,14 +28,19 @@ export default function Navbar() {
                 setDropdownOpen(false);
             }
         };
+
+        window.addEventListener('scroll', handleScroll);
         document.addEventListener('click', handleClickOutside);
-        return () => document.removeEventListener('click', handleClickOutside);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('click', handleClickOutside);
+        };
     }, []);
 
     const menuLinks = [
         { name: 'Accueil', icon: <Home size={18} />, href: '/' },
         {
-            name: 'formateurs',
+            name: 'Formateurs',
             icon: <FolderOpen size={18} />,
             href: '/formateurs',
         },
@@ -45,32 +52,46 @@ export default function Navbar() {
     const isAuthenticated = !!auth?.user;
 
     return (
-        <nav className="fixed top-0 z-50 w-full bg-gradient-to-r from-[#534EEB] via-pink-500 to-[#534EEB] text-white shadow-lg">
-            {' '}
+        <nav
+            className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+                scrolled
+                    ? 'bg-white/40 shadow-md backdrop-blur-md'
+                    : 'bg-[#C0CCFE]'
+            } py-3 shadow-md`}
+        >
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-                {/* Logo */}{' '}
+                {/* Logo */}
                 <Link
                     href="/"
-                    className="text-2xl font-bold tracking-wide transition hover:text-white/80"
+                    className={`text-2xl font-bold tracking-wide transition-colors duration-300 ${
+                        scrolled ? 'text-gray-800' : 'text-white'
+                    }`}
                 >
-                    Omiie{' '}
+                    Omiie
                 </Link>
+
                 {/* Menu Desktop */}
                 <div className="hidden space-x-8 md:flex">
                     {menuLinks.map((link) => (
                         <motion.div
                             key={link.name}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            transition={{ duration: 0.2 }}
                         >
                             <Link
                                 href={link.href}
-                                className="flex items-center gap-2 transition hover:text-white/80"
+                                className={`flex items-center gap-2 transition-colors duration-300 ${
+                                    scrolled
+                                        ? 'text-gray-800 hover:text-pink-600'
+                                        : 'text-white hover:text-white/80'
+                                }`}
                             >
                                 {link.icon} {link.name}
                             </Link>
                         </motion.div>
                     ))}
                 </div>
+
                 {/* Dropdown Utilisateur */}
                 <div className="relative" ref={dropdownRef}>
                     {isAuthenticated ? (
@@ -80,7 +101,7 @@ export default function Navbar() {
                                 className="flex items-center gap-2 focus:outline-none"
                             >
                                 <motion.img
-                                    src={auth.user.avatar || `${avatar}`}
+                                    src={auth.user.avatar || avatar}
                                     alt="avatar"
                                     className="h-10 w-10 rounded-full border-2 border-white/70 shadow-md"
                                     whileHover={{ scale: 1.1, rotate: 3 }}
@@ -104,19 +125,21 @@ export default function Navbar() {
                                         repeat: Infinity,
                                         duration: 1.5,
                                     }}
-                                    className="text-white/70"
+                                    className="flex flex-col items-center text-white/70"
                                 >
-                                    <div className="flex flex-col items-center">
-                                        <span>☝️</span>
-                                        Menu
-                                    </div>
+                                    <span className="text-2xl">☝️</span>
+                                    Menu
                                 </motion.div>
                             </div>
                         </div>
                     ) : (
                         <Link
                             href="/login"
-                            className="rounded-lg bg-white/20 px-4 py-2 text-white shadow-md transition hover:bg-white/30"
+                            className={`rounded-lg px-4 py-2 shadow-md transition-colors duration-300 ${
+                                scrolled
+                                    ? 'bg-white text-gray-800 hover:bg-pink-100'
+                                    : 'bg-white/20 text-white hover:bg-white/30'
+                            }`}
                         >
                             Se connecter
                         </Link>
