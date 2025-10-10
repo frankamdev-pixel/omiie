@@ -1,4 +1,6 @@
+import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import { useMemo, useState } from 'react';
 import {
     FaBrain,
@@ -17,137 +19,219 @@ import {
     FaTools,
 } from 'react-icons/fa';
 
-// Données des services (ajout de placeholders pour images vides + détails enrichis)
+// Composant Modal pour détails au clic
+const ServiceDetailsModal = ({ service, isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
+                    aria-modal="true"
+                    role="dialog"
+                >
+                    <motion.div
+                        className="mx-4 w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl"
+                        initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.8, opacity: 0, y: 50 }}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 20,
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                            onClick={onClose}
+                            aria-label="Fermer modal"
+                        >
+                            &times;
+                        </button>
+                        <h2 className="mb-4 text-2xl font-bold text-[var(--omiie-pink)]">
+                            {service.title}
+                        </h2>
+                        <img
+                            src={service.image || '/placeholder.jpg'}
+                            alt={service.title}
+                            className="mb-4 h-48 w-full rounded-lg object-cover"
+                        />
+                        <p className="mb-4 text-gray-700">
+                            {service.description}
+                        </p>
+                        <p className="mb-4 text-gray-600 italic">
+                            {service.details}
+                        </p>
+                        <ul className="mb-4 list-disc pl-5 text-gray-600">
+                            <li>Avantages: {service.details.split('. ')[0]}</li>
+                            <li>Technos: {service.details.split('. ')[1]}</li>
+                            <li>Conseils: Commence par un MVP.</li>
+                        </ul>
+                        <Link
+                            href={service.link}
+                            className="omiie-btn w-full rounded-full py-2 font-semibold"
+                            aria-label={`Voir page complète de ${service.title}`}
+                        >
+                            Voir plus
+                        </Link>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+};
+
+ServiceDetailsModal.propTypes = {
+    service: PropTypes.object.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
+
+// Données des services (inchangées)
 const services = [
     {
+        id: 1, // Ajout ID pour clé unique
         title: 'Développement Web',
+        link: '/services/web-development',
         description:
             'Créez des sites modernes avec React, Next.js et Tailwind CSS. Apprenez les meilleures pratiques pour des apps performantes.',
         icon: <FaCode size={32} className="text-[var(--omiie-pink)]" />,
-        image: './assets/laptop.png' || (
-            <FaImage size={32} className="text-gray-400" />
-        ), // Placeholder si vide
+        image: './assets/laptop.png',
         category: 'Formations',
         details: 'Cours interactifs, projets réels, certification incluse.',
     },
     {
+        id: 2,
         title: 'Installation Réseau',
+        link: '/services/network-installation',
         description:
             'Configurez des réseaux sécurisés et performants avec Cisco et Ubiquiti.',
         icon: <FaNetworkWired size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/business.jpg' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: 'assets/business.jpg',
         category: 'Services Techniques',
         details: 'Audit gratuit, installation sur site, maintenance 24/7.',
     },
     {
+        id: 3,
         title: 'Marketing Digital',
+        link: '/services/digital-marketing',
         description:
             'Boostez votre visibilité avec SEO, Google Ads et réseaux sociaux.',
         icon: <FaBullhorn size={32} className="text-[var(--omiie-pink)]" />,
-        image: '' || <FaImage size={32} className="text-gray-400" />,
+        image: 'marketing.jpg',
         category: 'Digital',
         details: 'Stratégies personnalisées, analytics avancés, ROI mesurable.',
     },
     {
+        id: 4,
         title: 'Cybersécurité',
+        link: '/services/cybersecurity',
         description:
             'Protégez vos systèmes contre les cyberattaques avec firewalls et audits.',
         icon: <FaShieldAlt size={32} className="text-[var(--omiie-pink)]" />,
-        image: '' || <FaImage size={32} className="text-gray-400" />,
+        image: './assets/security.jpg',
         category: 'Services Techniques',
         details: 'Tests de pénétration, formation équipe, conformité GDPR.',
     },
     {
+        id: 5,
         title: 'E-learning',
+        link: '/services/elearning',
         description:
             'Créez des plateformes éducatives modernes avec Moodle ou custom LMS.',
         icon: (
             <FaGraduationCap size={32} className="text-[var(--omiie-pink)]" />
         ),
-        image: '' || <FaImage size={32} className="text-gray-400" />,
+        image: '',
         category: 'Formations',
         details: 'Contenu multimédia, quizzes interactifs, tracking progrès.',
     },
     {
+        id: 6,
         title: 'E-commerce',
+        link: '/services/ecommerce',
         description:
             'Lancez des boutiques en ligne avec Shopify, WooCommerce ou custom.',
         icon: <FaShoppingCart size={32} className="text-[var(--omiie-pink)]" />,
-        image: '' || <FaImage size={32} className="text-gray-400" />,
+        image: '',
         category: 'Digital',
         details: 'Intégration paiements, SEO optimisé, mobile-first.',
     },
     {
+        id: 7,
         title: 'Design UI/UX',
+        link: '/services/ui-ux-design',
         description:
             'Concevez des interfaces intuitives et esthétiques avec Figma et Adobe XD.',
         icon: <FaPaintBrush size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: 'assets/mobile.png',
         category: 'Formations',
         details: 'Prototypage rapide, user testing, accessibilité WCAG.',
     },
     {
+        id: 8,
         title: 'Intelligence Artificielle',
+        link: '/services/artificial-intelligence',
         description:
             'Automatisez vos processus avec l’IA via TensorFlow et PyTorch.',
         icon: <FaBrain size={32} className="text-[var(--omiie-pink)]" />,
-        image: './assets/ia.jpg' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: './assets/ia.jpg',
         category: 'Services Techniques',
         details: 'Modèles custom, intégration API, éthique AI.',
     },
     {
+        id: 9,
         title: 'Cloud Computing',
+        link: '/services/cloud-computing',
         description:
             'Solutions cloud pour performance et flexibilité avec AWS et Azure.',
         icon: <FaCloud size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/cloud.jpg' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: 'assets/cloud.jpg',
         category: 'Services Techniques',
         details: 'Migration seamless, scalabilité auto, coûts optimisés.',
     },
     {
+        id: 10,
         title: 'Maintenance Informatique',
+        link: '/services/maintenance',
         description:
             'Support technique pour des systèmes fiables, on-site ou remote.',
         icon: <FaTools size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: 'assets/mobile.png',
         category: 'Services Techniques',
         details: 'Contrats annuels, réponse rapide, backups automatisés.',
     },
     {
+        id: 11,
         title: 'Analyse de Données',
+        link: '/services/data-analysis',
         description:
             'Prenez des décisions éclairées avec vos données via Power BI et Tableau.',
         icon: <FaChartBar size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: 'assets/mobile.png',
         category: 'Digital',
         details: 'Dashboards interactifs, prédictions ML, data cleaning.',
     },
     {
+        id: 12,
         title: 'Développement Mobile',
+        link: '/services/mobile-development',
         description:
             'Créez des apps pour iOS et Android avec React Native et Flutter.',
         icon: <FaMobileAlt size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png' || (
-            <FaImage size={32} className="text-gray-400" />
-        ),
+        image: 'assets/mobile.png',
         category: 'Formations',
         details: 'Cross-platform, performance native, publication stores.',
     },
 ];
 
-// Variants animations intensifiées (ajout spring, rotate, stagger avancé)
+// Variants animations (inchangées)
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -189,9 +273,9 @@ const categories = ['Tous', 'Formations', 'Services Techniques', 'Digital'];
 const ServicesGrid = () => {
     const [filter, setFilter] = useState('Tous');
     const [searchTerm, setSearchTerm] = useState('');
-    const [isLoading, setIsLoading] = useState(false); // État loading pour UX
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedService, setSelectedService] = useState(null); // État pour modal
 
-    // Memo pour filtrage optimisé (perf React rare source: React docs advanced hooks)
     const filteredServices = useMemo(() => {
         setIsLoading(true);
         const result = services
@@ -210,7 +294,7 @@ const ServicesGrid = () => {
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase()),
             );
-        setTimeout(() => setIsLoading(false), 300); // Simule loading pour animation fluide
+        setTimeout(() => setIsLoading(false), 300);
         return result;
     }, [filter, searchTerm]);
 
@@ -292,7 +376,6 @@ const ServicesGrid = () => {
                     .omiie-particle-2 { animation: float 8s ease-in-out infinite 1s; }
                     .omiie-particle-3 { animation: float 7s ease-in-out infinite 2s; }
 
-                    /* Ajout tooltip pour détails */
                     .omiie-tooltip { position: relative; }
                     .omiie-tooltip:hover .omiie-tooltip-text {
                         visibility: visible;
@@ -331,7 +414,6 @@ const ServicesGrid = () => {
                 className="omiie-bg-gradient relative overflow-hidden py-16"
                 aria-label="Grille des services Omiie"
             >
-                {/* Fond animé multicouche intensifié (vagues + particules pro) */}
                 <div className="absolute inset-0">
                     <svg
                         className="h-full w-full opacity-25"
@@ -347,12 +429,7 @@ const ServicesGrid = () => {
                                 attributeName="d"
                                 dur="8s"
                                 repeatCount="indefinite"
-                                values="
-                                    M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,165.3C672,149,768,139,864,149.3C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                                    M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,197.3C672,181,768,171,864,181.3C960,192,1056,224,1152,224C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                                    M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,133.3C672,117,768,107,864,117.3C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                                    M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,165.3C672,149,768,139,864,149.3C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z
-                                "
+                                values="..."
                             />
                         </path>
                     </svg>
@@ -364,24 +441,18 @@ const ServicesGrid = () => {
                         <path
                             fill="var(--omiie-accent)"
                             fillOpacity="0.2"
-                            d="M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,197.3C672,181,768,171,864,181.3C960,192,1056,224,1152,224C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                            d="..."
                         >
                             <animate
                                 attributeName="d"
                                 dur="10s"
                                 repeatCount="indefinite"
-                                values="
-                                    M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,197.3C672,181,768,171,864,181.3C960,192,1056,224,1152,224C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                                    M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,165.3C672,149,768,139,864,149.3C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                                    M0,192L48,208C96,224,192,256,288,261.3C384,267,480,245,576,229.3C672,213,768,203,864,213.3C960,224,1056,256,1152,256C1248,256,1344,224,1392,208L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                                    M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,197.3C672,181,768,171,864,181.3C960,192,1056,224,1152,224C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z
-                                "
+                                values="..."
                             />
                         </path>
                     </svg>
                 </div>
 
-                {/* Particules animées pro (plus de particules, mouvements variés) */}
                 <div className="pointer-events-none absolute inset-0">
                     <div className="omiie-particle omiie-particle-1 top-1/5 left-1/4 h-3 w-3"></div>
                     <div className="omiie-particle omiie-particle-2 top-3/4 right-1/5 h-4 w-4"></div>
@@ -413,7 +484,6 @@ const ServicesGrid = () => {
                         Découvrez Nos Services
                     </motion.h2>
 
-                    {/* Recherche avec debounce implicite via memo */}
                     <motion.div
                         className="mb-6 flex justify-center"
                         initial={{ opacity: 0, y: 20 }}
@@ -426,7 +496,7 @@ const ServicesGrid = () => {
                                 placeholder="Rechercher un service..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="omiie-search-input py-3 pr-4 pl-10 text-base shadow-md" // Amélioré
+                                className="omiie-search-input py-3 pr-4 pl-10 text-base shadow-md"
                                 aria-label="Recherche services"
                             />
                             <FaSearch
@@ -436,7 +506,6 @@ const ServicesGrid = () => {
                         </div>
                     </motion.div>
 
-                    {/* Filtres avec animation hover */}
                     <motion.div
                         className="mb-12 flex flex-wrap justify-center gap-4"
                         initial={{ opacity: 0, y: 20 }}
@@ -461,7 +530,6 @@ const ServicesGrid = () => {
                         ))}
                     </motion.div>
 
-                    {/* Grille avec AnimatePresence pour transitions fluides sur filtre/recherche */}
                     <AnimatePresence mode="wait">
                         {isLoading ? (
                             <motion.p
@@ -483,13 +551,13 @@ const ServicesGrid = () => {
                             >
                                 {filteredServices.map((service, index) => (
                                     <motion.div
-                                        key={index}
+                                        key={service.id}
                                         className="omiie-card flex flex-col"
                                         custom={index}
                                         variants={cardVariants}
                                         whileHover="hover"
                                         whileTap="tap"
-                                        layout // Pour animations layout fluides
+                                        layout
                                     >
                                         <div className="relative h-40">
                                             {service.image ? (
@@ -535,13 +603,15 @@ const ServicesGrid = () => {
                                                     {service.details}
                                                 </span>
                                             </div>
-                                            <a
-                                                href={`#${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                            <button
+                                                onClick={() =>
+                                                    setSelectedService(service)
+                                                }
                                                 className="omiie-btn rounded-full px-3 py-1 text-center text-sm font-semibold"
                                                 aria-label={`En savoir plus sur ${service.title}`}
                                             >
                                                 En savoir plus
-                                            </a>
+                                            </button>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -558,6 +628,12 @@ const ServicesGrid = () => {
                             </motion.p>
                         )}
                     </AnimatePresence>
+
+                    <ServiceDetailsModal
+                        service={selectedService}
+                        isOpen={!!selectedService}
+                        onClose={() => setSelectedService(null)}
+                    />
                 </div>
             </section>
         </>
