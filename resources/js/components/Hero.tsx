@@ -29,7 +29,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative flex min-h-screen items-center bg-[#C0CCFE] justify-center overflow-hidden px-4 py-16 sm:px-6 md:px-12 md:py-24"
+      className="relative  flex min-h-screen items-center bg-[#C0CCFE] justify-center overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-24"
       aria-label="Section principale de Omiie"
     >
       {/* Fond animé */}
