@@ -393,7 +393,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Actions (Auth + Mobile Toggle) */}
-                    <div className="flex bg-white items-center gap-4">
+                    <div className="flex items-center gap-4">
                         {isAuthenticated ? (
                             <div className="relative" ref={dropdownRef}>
                                 <motion.button

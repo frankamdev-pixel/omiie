@@ -125,7 +125,7 @@ const services = [
         description:
             'Boostez votre visibilité avec SEO, Google Ads et réseaux sociaux.',
         icon: <FaBullhorn size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'marketing.jpg',
+        image: 'assets/busines.jpg',
         category: 'Digital',
         details: 'Stratégies personnalisées, analytics avancés, ROI mesurable.',
     },
