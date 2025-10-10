@@ -1,9 +1,12 @@
+import ActionCall from '@/components/ActionCall';
+import DashboardAppercu from '@/components/DashboardAppercu';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
 import ServicesGrid from '@/components/ServicesGrid';
-import ServicesSwiper from '@/components/ServicesSwiper';
+import Testimonial from '@/components/Testimonial';
 import WhatsAppButton from '@/components/WhatsappButton';
+import WhyUs from '@/components/WhyUs';
 
 export default function Home() {
     return (
@@ -11,8 +14,13 @@ export default function Home() {
             <Navbar />
             <div className="bg-[#C0CCFE]">
                 <Hero />
-                <ServicesSwiper />
+                {/* <ServicesSwiper /> */}
+                <WhyUs />
+                <DashboardAppercu/>
+                <Testimonial/>
+                <ActionCall />
                 <ServicesGrid />
+                <DashboardAppercu/>
             </div>
             <WhatsAppButton />
             <Footer />

@@ -304,7 +304,7 @@ export default function Navbar() {
                     .omiie-nav.scrolled {
                         background: rgba(255, 255, 255, 0.95);
                         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                        backdrop-filter: blur(10px);
+                       
                     }
 
                     .omiie-btn {
@@ -350,7 +350,8 @@ export default function Navbar() {
             </style>
 
             <motion.nav
-                className={`omiie-nav fixed top-0 z-50 w-full ${scrolled ? 'scrolled' : ''}`}
+            
+                className={`omiie-nav fixed top-0 z-50 w-full ${scrolled ? 'scrolled' : ''} bg-white`}
                 variants={navVariants}
                 initial="hidden"
                 animate="visible"
@@ -365,15 +366,15 @@ export default function Navbar() {
                             whileHover={{ scale: 1.1, rotate: 5 }}
                             transition={{ type: 'spring', stiffness: 300 }}
                         />
-                        <span
+                        {/* <span
                             className={`text-2xl font-extrabold tracking-tight ${scrolled ? 'text-gray-900' : 'text-[var(--omiie-pink)]'}`}
                         >
                             Omiie
-                        </span>
+                        </span> */}
                     </Link>
 
                     {/* Menu Desktop */}
-                    <div className="hidden items-center gap-8 lg:flex">
+                    <div className="hidden items-center bg-white gap-8 lg:flex">
                         {menuLinks.map((link) => (
                             <motion.div
                                 key={link.name}
@@ -392,7 +393,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Actions (Auth + Mobile Toggle) */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex bg-white items-center gap-4">
                         {isAuthenticated ? (
                             <div className="relative" ref={dropdownRef}>
                                 <motion.button
@@ -478,7 +479,7 @@ export default function Navbar() {
 
                         {/* Toggle Menu Mobile */}
                         <motion.button
-                            className="focus:outline-none lg:hidden"
+                            className="focus:outline-none lg:hidden bg-white"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             whileTap={{ scale: 0.9 }}
                         >

@@ -20,4 +20,10 @@ export default defineConfig({
     esbuild: {
         jsx: 'automatic',
     },
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 100,
+      },
+    }
 });
