@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   const sectionVariants = {
@@ -7,8 +7,8 @@ export default function Footer() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  const services = ["Développement Web", "Design Graphique", "SEO", "Marketing", "Consulting"];
-  const quickLinks = ["Accueil", "À propos", "Services", "Contact"];
+  const formations = ["Développement Web", "Design UI/UX", "Marketing Digital", "Cybersécurité", "Data Science"];
+  const quickLinks = ["Accueil", "Formations", "Formateurs", "À propos", "Contact"];
 
   return (
     <motion.footer
@@ -26,24 +26,26 @@ export default function Footer() {
         >
           {/* À propos */}
           <motion.div variants={sectionVariants}>
-            <h3 className="mb-4 text-2xl font-bold text-pink-500">Omiie</h3>
+            <h3 className="mb-4 text-2xl font-bold text-blue-400">Omiie</h3>
             <p className="mb-4 text-gray-300 leading-relaxed">
-              Omiie <span className="text-pink-400 font-semibold">(Organisation des milieux et interfaces informatiques pour entreprises)</span> propose des services professionnels pour booster votre présence en ligne. Alliant design, performance et innovation.
+              <span className="text-blue-300 font-semibold">Omiie</span> est une plateforme de formation en ligne 
+              qui aide les étudiants et professionnels à acquérir des compétences pratiques grâce à des cours 
+              interactifs et à des formateurs expérimentés.
             </p>
             <p className="text-sm text-gray-400">© 2025 Omiie. Tous droits réservés.</p>
           </motion.div>
 
-          {/* Services */}
+          {/* Formations populaires */}
           <motion.div variants={sectionVariants}>
-            <h4 className="mb-4 text-lg font-semibold text-pink-400">Nos Services</h4>
+            <h4 className="mb-4 text-lg font-semibold text-blue-400">Formations populaires</h4>
             <ul className="space-y-2">
-              {services.map((service) => (
+              {formations.map((formation) => (
                 <motion.li
-                  key={service}
-                  whileHover={{ x: 5, color: "#F472B6" }}
+                  key={formation}
+                  whileHover={{ x: 5, color: "#60A5FA" }}
                   className="cursor-pointer text-gray-300 transition-all"
                 >
-                  {service}
+                  {formation}
                 </motion.li>
               ))}
             </ul>
@@ -51,12 +53,12 @@ export default function Footer() {
 
           {/* Liens rapides */}
           <motion.div variants={sectionVariants}>
-            <h4 className="mb-4 text-lg font-semibold text-pink-400">Liens rapides</h4>
+            <h4 className="mb-4 text-lg font-semibold text-blue-400">Liens rapides</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <motion.li
                   key={link}
-                  whileHover={{ x: 5, color: "#F472B6" }}
+                  whileHover={{ x: 5, color: "#60A5FA" }}
                   className="cursor-pointer text-gray-300 transition-all"
                 >
                   {link}
@@ -67,15 +69,15 @@ export default function Footer() {
 
           {/* Contact & Réseaux */}
           <motion.div variants={sectionVariants}>
-            <h4 className="mb-4 text-lg font-semibold text-pink-400">Contact</h4>
-            <p className="mb-2 text-gray-300">Email : omiieTech@gmail.com</p>
+            <h4 className="mb-4 text-lg font-semibold text-blue-400">Contact</h4>
+            <p className="mb-2 text-gray-300">Email : support@omiielearn.com</p>
             <p className="mb-4 text-gray-300">Téléphone : +237 690 46 18 30</p>
             <div className="mt-3 flex space-x-5">
-              {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, idx) => (
+              {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube].map((Icon, idx) => (
                 <motion.a
                   key={idx}
                   href="#"
-                  whileHover={{ scale: 1.2, rotate: 10, color: "#F472B6" }}
+                  whileHover={{ scale: 1.2, rotate: 10, color: "#60A5FA" }}
                   className="text-lg text-gray-300 transition-all"
                 >
                   <Icon />
@@ -93,7 +95,8 @@ export default function Footer() {
         whileInView={{ opacity: 1, transition: { duration: 0.5 } }}
         viewport={{ once: true }}
       >
-        Conçu avec <span className="text-pink-400">❤️</span> par <span className="text-pink-400">Omiie</span> | Tous droits réservés 2025
+        Conçu avec <span className="text-blue-400">💙</span> par <span className="text-blue-400 font-semibold">Omiie</span> | 
+        Apprenez. Progressez. Réussissez.
       </motion.div>
     </motion.footer>
   );
