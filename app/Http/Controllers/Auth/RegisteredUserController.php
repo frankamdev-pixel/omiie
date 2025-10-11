@@ -48,6 +48,9 @@ class RegisteredUserController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // return redirect()
+        // ->intended(route('dashboard', absolute: false));
+        return redirect('/')
+        ->with('success', 'Hey ' . $user->name . ', Bienvenue sur omiie 🎉');
     }
 }

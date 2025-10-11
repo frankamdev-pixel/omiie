@@ -125,7 +125,7 @@ const services = [
         description:
             'Boostez votre visibilité avec SEO, Google Ads et réseaux sociaux.',
         icon: <FaBullhorn size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/busines.jpg',
+        image: './assets/business.jpg',
         category: 'Digital',
         details: 'Stratégies personnalisées, analytics avancés, ROI mesurable.',
     },
@@ -160,7 +160,7 @@ const services = [
         description:
             'Lancez des boutiques en ligne avec Shopify, WooCommerce ou custom.',
         icon: <FaShoppingCart size={32} className="text-[var(--omiie-pink)]" />,
-        image: '',
+        image: './assets/business.jpg',
         category: 'Digital',
         details: 'Intégration paiements, SEO optimisé, mobile-first.',
     },
@@ -171,7 +171,7 @@ const services = [
         description:
             'Concevez des interfaces intuitives et esthétiques avec Figma et Adobe XD.',
         icon: <FaPaintBrush size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png',
+        image: './assets/mobile.png',
         category: 'Formations',
         details: 'Prototypage rapide, user testing, accessibilité WCAG.',
     },
@@ -193,7 +193,7 @@ const services = [
         description:
             'Solutions cloud pour performance et flexibilité avec AWS et Azure.',
         icon: <FaCloud size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/cloud.jpg',
+        image: './assets/cloud.jpg',
         category: 'Services Techniques',
         details: 'Migration seamless, scalabilité auto, coûts optimisés.',
     },
@@ -204,7 +204,7 @@ const services = [
         description:
             'Support technique pour des systèmes fiables, on-site ou remote.',
         icon: <FaTools size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png',
+        image: './assets/mobile.png',
         category: 'Services Techniques',
         details: 'Contrats annuels, réponse rapide, backups automatisés.',
     },
@@ -215,7 +215,7 @@ const services = [
         description:
             'Prenez des décisions éclairées avec vos données via Power BI et Tableau.',
         icon: <FaChartBar size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png',
+        image: './assets/mobile.png',
         category: 'Digital',
         details: 'Dashboards interactifs, prédictions ML, data cleaning.',
     },
@@ -226,7 +226,7 @@ const services = [
         description:
             'Créez des apps pour iOS et Android avec React Native et Flutter.',
         icon: <FaMobileAlt size={32} className="text-[var(--omiie-pink)]" />,
-        image: 'assets/mobile.png',
+        image: './assets/mobile.png',
         category: 'Formations',
         details: 'Cross-platform, performance native, publication stores.',
     },
