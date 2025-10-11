@@ -276,9 +276,25 @@ export default function Navbar() {
       icon: <FolderOpen size={18} />,
       href: '/formateurs',
     },
-    { name: 'Services', icon: <FolderOpen size={18} />, href: '/services' },
-    { name: 'À propos', icon: <Info size={18} />, href: '/about' },
-    { name: 'Contact', icon: <Phone size={18} />, href: '/contact' },
+    {
+      name: 'Tableau de bord',
+      icon: <FolderOpen size={18} />,
+      href: '/dashboard',
+    },
+    { 
+       name: 'Services',
+       icon: <FolderOpen size={18} />, 
+       href: '/services'
+       },
+    { 
+      name: 'À propos',
+       icon: <Info size={18} />,
+        href: '/about' },
+    { 
+      name: 'Contact',
+       icon: <Phone size={18} />,
+        href: '/contact'
+       },
   ];
 
   const isAuthenticated = !!auth?.user;
@@ -356,7 +372,9 @@ export default function Navbar() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+          prefetch
+          href="/" className="flex items-center gap-2">
             <motion.img
               src="./assets/logo.png" // Remplace par ton logo
               alt="Omiie Logo"
@@ -372,7 +390,7 @@ export default function Navbar() {
           </Link>
 
           {/* Menu Desktop */}
-          <div className="hidden items-center gap-8 bg-white lg:flex">
+          <div className="hidden items-center gap-8 lg:flex">
             {menuLinks.map((link) => (
               <motion.div
                 key={link.name}
@@ -380,6 +398,7 @@ export default function Navbar() {
                 transition={{ type: 'spring', stiffness: 400 }}
               >
                 <Link
+                prefetch
                   href={link.href}
                   className={`omiie-nav-link flex items-center gap-2 text-sm font-semibold ${scrolled ? 'text-gray-800 hover:text-[var(--omiie-pink)]' : 'text-gray-900 hover:text-[var(--omiie-pink)]'}`}
                 >
@@ -442,7 +461,8 @@ export default function Navbar() {
                         </p>
                       </div>
                       <Link
-                        href="/profile"
+                      prefetch
+                        href="/settings/profile"
                         className="flex items-center gap-2 px-4 py-2 hover:bg-[var(--omiie-light-pink)]"
                         onClick={() =>
                           setDropdownOpen(false)
@@ -451,6 +471,7 @@ export default function Navbar() {
                         <User size={18} /> Mon profil
                       </Link>
                       <Link
+                      prefetch
                         href="/logout"
                         method="post"
                         as="button"
@@ -524,6 +545,7 @@ export default function Navbar() {
                 </motion.button>
                 {menuLinks.map((link) => (
                   <Link
+                  prefetch
                     key={link.name}
                     href={link.href}
                     className="flex items-center gap-3 py-3 text-lg font-semibold text-gray-800 hover:text-[var(--omiie-pink)]"
@@ -537,7 +559,8 @@ export default function Navbar() {
                   <>
                     <hr className="my-4" />
                     <Link
-                      href="/profile"
+                    prefetch
+                      href="/settings/profile"
                       className="flex items-center gap-3 py-3 text-lg font-semibold text-gray-800 hover:text-[var(--omiie-pink)]"
                       onClick={() =>
                         setMobileMenuOpen(false)
