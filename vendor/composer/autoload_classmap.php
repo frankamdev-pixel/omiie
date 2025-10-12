@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerifyEmailController' => $baseDir . '/app/Http/Controllers/Auth/VerifyEmailController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\ServicesDetailsController' => $baseDir . '/app/Http/Controllers/ServicesDetailsController.php',
     'App\\Http\\Controllers\\Settings\\PasswordController' => $baseDir . '/app/Http/Controllers/Settings/PasswordController.php',
     'App\\Http\\Controllers\\Settings\\ProfileController' => $baseDir . '/app/Http/Controllers/Settings/ProfileController.php',
     'App\\Http\\Controllers\\Settings\\TwoFactorAuthenticationController' => $baseDir . '/app/Http/Controllers/Settings/TwoFactorAuthenticationController.php',

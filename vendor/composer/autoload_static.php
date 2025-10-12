@@ -594,6 +594,7 @@ class ComposerStaticInitdb1a607ff3200db016bc62d7a8dd6399
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\ServicesDetailsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServicesDetailsController.php',
         'App\\Http\\Controllers\\Settings\\PasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/PasswordController.php',
         'App\\Http\\Controllers\\Settings\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/ProfileController.php',
         'App\\Http\\Controllers\\Settings\\TwoFactorAuthenticationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/TwoFactorAuthenticationController.php',
