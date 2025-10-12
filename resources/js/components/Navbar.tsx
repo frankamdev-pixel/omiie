@@ -67,7 +67,7 @@ export default function Navbar() {
  return (
   <>
    <motion.nav
-    className={`omiie-nav fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${scrolled && 'bg-cyan-200 shadow-md' 
+    className={`omiie-nav fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${scrolled && 'bg-cyan-200 shadow-md'
      }`}
     variants={navVariants}
     initial="hidden"
@@ -84,6 +84,7 @@ export default function Navbar() {
       />
      </Link>
 
+     
      {/* Desktop Links */}
      <div className="hidden items-center gap-8 lg:flex">
       {menuLinks.map((link) => (
