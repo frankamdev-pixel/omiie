@@ -84,7 +84,7 @@ export default function Navbar() {
       />
      </Link>
 
-     
+
      {/* Desktop Links */}
      <div className="hidden items-center gap-8 lg:flex">
       {menuLinks.map((link) => (
@@ -163,7 +163,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Button */}
       <motion.button
-       className="bg-black focus:outline-none lg:hidden rounded-md p-2"
+       className="bg-blue-500 focus:outline-none lg:hidden rounded-md p-2"
        onClick={() => setMobileMenuOpen(true)}
        whileTap={{ scale: 0.9 }}
       >
