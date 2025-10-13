@@ -70,7 +70,7 @@ const Hero = () => {
           >
             Leader en solutions numériques
           </motion.div>
-          <motion.h1 className="text-3xl font-extrabold text-[#534EEB] sm:text-4xl md:text-5xl lg:text-6xl" variants={textVariants}>
+          <motion.h1 className="text-2xl font-extrabold text-[#534EEB] sm:text-4xl md:text-5xl lg:text-6xl" variants={textVariants}>
             Optimisez vos systèmes informatiques d’entreprise
           </motion.h1>
           <motion.h2 className="text-lg font-semibold text-gray-800 sm:text-xl md:text-2xl" variants={textVariants}>
