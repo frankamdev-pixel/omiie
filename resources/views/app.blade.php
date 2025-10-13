@@ -30,7 +30,7 @@
 
     {{-- Favicon dynamique --}}
     <link id="favicon-light" rel="icon" type="image/png" href="/assets/logo-light.png">
-    <link rel="icon" type="image/png" href="/assets/logo.png" />
+
     <link id="favicon-dark" rel="icon" type="image/png" href="/assets/logo-dark.png">
     <script>
         const darkMode = window.matchMedia('(prefers-color-scheme: dark)');
@@ -55,30 +55,43 @@
     </script>
 
     {{-- Loader simple --}}
+    
     <style>
-        html { background-color: oklch(1 0 0); }
-        html.dark { background-color: oklch(0.145 0 0); }
+html {
+    background: #f9f9f9;
+    transition: background 0.5s ease;
+}
+html.dark {
+    background: #111;
+}
 
-        #loader {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        html.dark #loader { background: #0e0e0e; }
-        #loader img {
-            width: 190px;
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-    </style>
+/* Loader overlay */
+#loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 9999;
+    transition: opacity 0.5s ease, background 0.5s ease;
+}
+html.dark #loader {
+    background: rgba(17, 17, 17, 0.95);
+}
+
+/* Logo animation */
+#loader img {
+    width: 120px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+</style>
 
     {{-- React + Inertia --}}
     @viteReactRefresh
