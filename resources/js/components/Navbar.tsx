@@ -161,7 +161,7 @@ export default function Navbar() {
        <Link
         prefetch
         href="/register"
-        className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-full px-4 py-2 text-sm font-semibold transition"
+        className="bg-indigo-600 hover:bg-indigo-500 text-white rounded px-4 py-2 text-sm font-semibold transition"
        >
         S’inscrire
        </Link>
@@ -169,7 +169,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Button */}
       <motion.button
-       className="bg-blue-500 focus:outline-none lg:hidden rounded-md p-2"
+       className="bg-blue-500 focus:outline-none rounded lg:hidden p-2"
        onClick={() => setMobileMenuOpen(true)}
        whileTap={{ scale: 0.9 }}
       >
