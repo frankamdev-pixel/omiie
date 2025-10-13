@@ -75,7 +75,9 @@ export default function Navbar() {
    >
     <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
      {/* Logo */}
-     <Link href="/" className="flex items-center gap-2">
+     <Link
+      prefetch
+      href="/" className="flex items-center gap-2">
       <motion.img
        src="./assets/logo.png"
        alt="Omiie Logo"
@@ -90,6 +92,7 @@ export default function Navbar() {
       {menuLinks.map((link) => (
        <motion.div key={link.name} whileHover={{ y: -2 }}>
         <Link
+         prefetch
          href={link.href}
          className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-indigo-600 transition"
         >
@@ -135,12 +138,14 @@ export default function Navbar() {
             <p className="text-sm text-gray-500">Bienvenue 👋</p>
            </div>
            <Link
+            prefetch
             href="/settings/profile"
             className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50"
            >
             <User size={18} /> Mon profil
            </Link>
            <Link
+            prefetch
             href="/logout"
             method="post"
             as="button"
@@ -154,6 +159,7 @@ export default function Navbar() {
        </div>
       ) : (
        <Link
+        prefetch
         href="/register"
         className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-full px-4 py-2 text-sm font-semibold transition"
        >
@@ -209,6 +215,7 @@ export default function Navbar() {
          transition={{ delay: 0.05 * index }}
         >
          <Link
+          prefetch
           href={link.href}
           className="flex items-center gap-3 py-3 px-2 text-lg font-medium rounded hover:bg-gray-800 transition"
           onClick={() => setMobileMenuOpen(false)}
@@ -222,6 +229,7 @@ export default function Navbar() {
         <>
          <hr className="my-5 border-white/20" />
          <Link
+          prefetch
           href="/settings/profile"
           className="flex items-center gap-3 py-3 px-2 rounded hover:bg-gray-800 transition"
           onClick={() => setMobileMenuOpen(false)}
@@ -229,6 +237,7 @@ export default function Navbar() {
           <User size={18} /> Mon profil
          </Link>
          <Link
+          prefetch
           href="/logout"
           method="post"
           as="button"
