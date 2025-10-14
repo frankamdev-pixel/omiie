@@ -10,102 +10,102 @@ import AuthLayout from '@/layouts/auth-layout'
 
 
 export default function Register() {
-  const { data, setData, post, processing, errors } = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-  })
+ const { data, setData, post, processing, errors } = useForm({
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+ })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    post('/register')
-  }
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
+  post('/register')
+ }
 
-  return (
-    <AuthLayout
-      title="Créer un compte"
-      description="Entrez vos informations pour vous inscrire"
-    >
-      <Head title="Inscription" />
+ return (
+  <AuthLayout
+   title="Créer un compte"
+   description="Entrez vos informations pour vous inscrire"
+  >
+   <Head title="Inscription" />
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        <div className="grid gap-6">
-          Bienvenue sur la page d'inscription 😊
-          <div className="grid gap-2">
-            <Label htmlFor="name">Nom <span className="text-cyan-600">*</span></Label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              required
-              value={data.name}
-              onChange={(e) => setData('name', e.target.value)}
-              placeholder="Votre nom"
-            />
-            <InputError message={errors.name} />
-          </div>
+   <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <div className="grid gap-6">
+     Bienvenue sur la page d'inscription 😊
+     <div className="grid gap-2">
+      <Label htmlFor="name">Nom <span className="text-cyan-600">*</span></Label>
+      <Input
+       id="name"
+       name="name"
+       type="text"
+       required
+       value={data.name}
+       onChange={(e) => setData('name', e.target.value)}
+       placeholder="Votre nom"
+      />
+      <InputError message={errors.name} />
+     </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="email">Adresse email <span className="text-cyan-600">*</span></Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={data.email}
-              onChange={(e) => setData('email', e.target.value)}
-              placeholder="frankamdev@example.com"
-            />
-            <InputError message={errors.email} />
-          </div>
+     <div className="grid gap-2">
+      <Label htmlFor="email">Adresse email <span className="text-cyan-600">*</span></Label>
+      <Input
+       id="email"
+       name="email"
+       type="email"
+       required
+       value={data.email}
+       onChange={(e) => setData('email', e.target.value)}
+       placeholder="frankamdev@example.com"
+      />
+      <InputError message={errors.email} />
+     </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="password">Mot de passe <span className="text-cyan-600">*</span></Label>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              required
-              value={data.password}
-              onChange={(e) => setData('password', e.target.value)}
-              placeholder="Votre mot de passe"
-            />
-            <InputError message={errors.password} />
-          </div>
+     <div className="grid gap-2">
+      <Label htmlFor="password">Mot de passe <span className="text-cyan-600">*</span></Label>
+      <Input
+       id="password"
+       name="password"
+       type="password"
+       required
+       value={data.password}
+       onChange={(e) => setData('password', e.target.value)}
+       placeholder="Votre mot de passe"
+      />
+      <InputError message={errors.password} />
+     </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="password_confirmation">
-              Confirmez mot de passe <span className="text-cyan-600">*</span>
-            </Label>
-            <Input
-              id="password_confirmation"
-              name="password_confirmation"
-              type="password"
-              required
-              value={data.password_confirmation}
-              onChange={(e) =>
-                setData('password_confirmation', e.target.value)
-              }
-              placeholder="Confirmer mot de passe"
-            />
-            <InputError message={errors.password_confirmation} />
-          </div>
+     <div className="grid gap-2">
+      <Label htmlFor="password_confirmation">
+       Confirmez mot de passe <span className="text-cyan-600">*</span>
+      </Label>
+      <Input
+       id="password_confirmation"
+       name="password_confirmation"
+       type="password"
+       required
+       value={data.password_confirmation}
+       onChange={(e) =>
+        setData('password_confirmation', e.target.value)
+       }
+       placeholder="Confirmer mot de passe"
+      />
+      <InputError message={errors.password_confirmation} />
+     </div>
 
-          <Button type="submit" className="mt-2 w-full" disabled={processing}>
-            {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-            Créer un compte
-          </Button>
-        </div>
+     <Button type="submit" className="mt-2 w-full" disabled={processing}>
+      {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+      Créer un compte
+     </Button>
+    </div>
 
-        <div className="text-center text-sm text-muted-foreground">
-          Vous avez déjà un compte ?{' '}
-        <TextLink href="/login">Se connecter</TextLink>
+    <div className="text-center text-sm text-muted-foreground">
+     Vous avez déjà un compte ?{' '}
+     <TextLink href="/login">Se connecter</TextLink>
 
-        </div>
-      </form>
-    </AuthLayout>
-  )
+    </div>
+   </form>
+  </AuthLayout>
+ )
 }
 
 

@@ -35,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
                 'info' => session('info')
             ];
         },
+        
     ]);
     }
 }
