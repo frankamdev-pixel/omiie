@@ -5,6 +5,7 @@ import {
  Send, User, Mail, Phone, FileText, MessageSquare, CheckCircle, AlertCircle,
  MapPin, Clock, PhoneCall, Shield, Database, Smartphone, BarChart3, Headphones
 } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 export default function Contact() {
  const [formData, setFormData] = useState({
@@ -103,6 +104,7 @@ export default function Contact() {
  return (
   <section className="py-24 relative overflow-hidden ">
    {/* Particules animées */}
+   <Navbar/>
    <div className="absolute inset-0 overflow-hidden pointer-events-none">
     {Array.from({ length: 20 }).map((_, i) => (
      <motion.div
@@ -142,7 +144,7 @@ export default function Contact() {
       Contact OMIIE
      </h2>
      <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-      Support 24/7 • Français/Anglais • Yaoundé/Douala
+      Support 24/7 • Anglais/Français • Bafoussam/Yaoundé
      </p>
     </motion.div>
 
@@ -154,7 +156,7 @@ export default function Contact() {
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: 0.2 }}
      >
-      <div className="backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20">
+      <div className="backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-blue/20">
        {/* Barre de progression */}
        <div className="flex justify-between mb-8">
         {[1, 2, 3].map((s) => (
