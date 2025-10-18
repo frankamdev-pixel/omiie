@@ -24,9 +24,11 @@ export default function About() {
  ];
 
  const team = [
-  { name: "Dr. Jean Dupont", role: "Fondateur & CEO", desc: "Expert en cybersécurité avec 15+ ans d'expérience en Afrique.", icon: Code },
-  { name: "Marie Ngo", role: "CTO", desc: "Spécialiste cloud, formée à MIT, pionnière en IA pour PME.", icon: Server },
-  { name: "Paul Biya Jr.", role: "Directeur Opérations", desc: "Gestion de projets IT pour 200+ entreprises camerounaises.", icon: Briefcase }
+  { name: "Fokam Hans", role: "Fondateur & CEO", desc: "Expert en cybersécurité avec 5+ ans d'expérience en Afrique.", icon: Code },
+  { name: "Kamgang Frank", role: "Co-Fondateur & CEO", desc: "Expert en développement web et mobile avec 5+ ans d'expérience au Cameroun.", icon: Code },
+
+  { name: "Tchatchouan Bryan Paul", role: "CTO", desc: "Spécialiste cloud, formée à MIT, pionnière en IA pour PME.", icon: Server },
+  { name: "Soh Loic", role: "Directeur Opérations", desc: "Gestion de projets IT pour 10+ entreprises camerounaises.", icon: Briefcase }
  ];
 
  const testimonials = [
