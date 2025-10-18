@@ -2,7 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
  ChevronDown, FolderOpen, Home, Info, LogOut, Menu, Phone, User, X,
- Shield, Database, Smartphone, BarChart3, Clock, Globe, Star
+ Shield, Database, Smartphone, BarChart3, Clock, Star
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -30,7 +30,11 @@ const mobileMenuVariants = {
 
 const menuLabelVariants = {
  hidden: { opacity: 0, y: 10 },
- visible: { opacity: 1, y: 0, transition: { duration: 0.4, loop: Infinity, yoyo: true } }
+ visible: {
+  opacity: 1,
+  y: 0,
+  transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" }
+ }
 };
 
 export default function Navbar() {
@@ -46,9 +50,7 @@ export default function Navbar() {
    }
   };
   document.addEventListener('mousedown', handleClickOutside);
-  return () => {
-   document.removeEventListener('mousedown', handleClickOutside);
-  };
+  return () => document.removeEventListener('mousedown', handleClickOutside);
  }, []);
 
  const menuLinks = [
@@ -70,26 +72,24 @@ export default function Navbar() {
 
  return (
   <>
-   {/* NAVBAR */}
+   {/* NAVBAR ÉLITE */}
    <motion.nav
-    className="fixed top-0 z-50 w-full bg-gradient-to-r from-blue-600/95 to-indigo-700/95 backdrop-blur-full shadow-lg border-b border-white/20"
+    className="fixed top-0 z-50 w-full bg-gradient-to-r from-blue-600/95 to-indigo-700/95 backdrop-blur-xl shadow-lg border-b border-white/20"
     variants={navVariants}
     initial="hidden"
     animate="visible"
    >
     <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-     {/* LOGO */}
+     {/* 🌟 LOGO ANIMÉ */}
      <motion.div variants={itemVariants}>
-      <Link
-      prefetch
-       href="/" className="flex items-center gap-3 group">
+      <Link prefetch href="/" className="flex items-center gap-3 group">
        <motion.div
         className="relative"
         whileHover={{ scale: 1.1, rotate: 360 }}
         transition={{ duration: 0.6 }}
        >
-        <div className="w-12 h-12 bg-blue-500 rounded-2xl shadow-lg flex items-center justify-center">
-         <img src="/assets/logo.png" className='h-10' alt="logo omiie" />
+        <div className="w-12 h-12 bg-white/90 rounded-2xl shadow-lg flex items-center justify-center">
+         <img src="/assets/logo.png" className="h-10" alt="logo omiie" />
         </div>
         <motion.div
          className="absolute -inset-1 bg-gradient-to-r from-white to-blue-100 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-500"
@@ -104,7 +104,7 @@ export default function Navbar() {
       </Link>
      </motion.div>
 
-     {/* LINKS DESKTOP */}
+     {/* 💻 LINKS DESKTOP */}
      <motion.div className="hidden lg:flex items-center gap-8" variants={itemVariants}>
       {menuLinks.map((link, i) => (
        <motion.div key={link.name} className="relative group" variants={itemVariants}>
@@ -120,11 +120,11 @@ export default function Navbar() {
       ))}
      </motion.div>
 
-     {/* CTA + USER + MOBILE */}
+     {/* 🎯 CTA + USER + MOBILE */}
      <motion.div className="flex items-center gap-2 lg:gap-6" variants={itemVariants}>
-      {/* Bouton S'inscrire - VISIBLE SUR MOBILE + DESKTOP */}
+      {/* Bouton S'inscrire - TOUT ÉCRAN */}
       {!isAuthenticated && (
-       <motion.div className="group">
+       <motion.div className="group relative">
         <Link
          href="/register"
          className="px-4 py-2 lg:px-6 lg:py-3 rounded-full font-bold text-xs lg:text-sm transition-all duration-300 bg-white text-blue-600 hover:bg-white/90 shadow-lg hover:shadow-xl"
@@ -138,12 +138,12 @@ export default function Navbar() {
          initial="hidden"
          animate="visible"
         >
-         Cliquez ici !
+         Gratuit !
         </motion.div>
        </motion.div>
       )}
 
-      {/* User Dropdown - UNIQUEMENT DESKTOP */}
+      {/* 👤 User Dropdown - DESKTOP */}
       {isAuthenticated && (
        <div className="relative hidden lg:block" ref={dropdownRef}>
         <motion.button
@@ -152,7 +152,7 @@ export default function Navbar() {
          whileHover={{ scale: 1.05 }}
         >
          <img
-          src={auth.user.avatar || "https://ui-avatars.com/api/?name=" + auth.user.name}
+          src={auth.user.avatar || `https://ui-avatars.com/api/?name=${auth.user.name}`}
           alt="Avatar"
           className="w-8 h-8 rounded-full border-2 border-white"
          />
@@ -173,7 +173,7 @@ export default function Navbar() {
            <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
             <div className="flex items-center gap-3">
              <img
-              src={auth.user.avatar || "https://ui-avatars.com/api/?name=" + auth.user.name}
+              src={auth.user.avatar || `https://ui-avatars.com/api/?name=${auth.user.name}`}
               className="w-10 h-10 rounded-full"
              />
              <div>
@@ -197,30 +197,32 @@ export default function Navbar() {
        </div>
       )}
 
-      {/* MOBILE: Avatar simple OU Burger Menu */}
+      {/* 📱 MOBILE SECTION */}
       <div className="flex items-center gap-2 lg:hidden">
        {isAuthenticated ? (
-        <Link href="/dashboard" className="p-2 rounded-full bg-white/20">
+        <Link href="/dashboard" className="p-2 rounded-full bg-white/20" whileTap={{ scale: 0.9 }}>
          <img
-          src={auth.user.avatar || "https://ui-avatars.com/api/?name=" + auth.user.name}
+          src={auth.user.avatar || `https://ui-avatars.com/api/?name=${auth.user.name}`}
           alt="Avatar"
           className="w-8 h-8 rounded-full border-2 border-white"
          />
         </Link>
        ) : (
-        <div className="relative">
+        <div className="relative group">
          <motion.button
-          className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30"
+          className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition"
           onClick={() => setMobileMenuOpen(true)}
           whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
          >
           <Menu size={20} />
          </motion.button>
+         {/* ✨ LABEL MENU ANIMÉ */}
          <motion.div
-          className="absolute -top-6 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full opacity-0 hover:opacity-100 transition-opacity"
+          className="absolute -top-6 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full shadow-lg"
           variants={menuLabelVariants}
           initial="hidden"
-          whileHover="visible"
+          animate="visible"
          >
           Menu
          </motion.div>
@@ -231,7 +233,7 @@ export default function Navbar() {
     </div>
    </motion.nav>
 
-   {/* MOBILE MENU - UNIQUEMENT NON-CONNECTÉ */}
+   {/* 📲 MOBILE MENU - NON-CONNECTÉ */}
    <AnimatePresence>
     {mobileMenuOpen && !isAuthenticated && (
      <>
@@ -258,11 +260,12 @@ export default function Navbar() {
          <X size={24} />
         </motion.button>
 
-        {/* Menu Links */}
+        {/* 🔗 Menu Links */}
         <div className="space-y-2 mb-8">
          {menuLinks.map((link, i) => (
           <motion.div key={link.name} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}>
            <Link
+            prefetch
             href={link.href}
             className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 hover:bg-white/20 transition"
             onClick={() => setMobileMenuOpen(false)}
@@ -274,7 +277,7 @@ export default function Navbar() {
          ))}
         </div>
 
-        {/* Services */}
+        {/* 🛠️ Services */}
         <div className="mb-8">
          <h3 className="font-bold text-blue-400 mb-4 flex items-center gap-2">
           <FolderOpen size={20} /> Nos Services
@@ -283,6 +286,7 @@ export default function Navbar() {
           {servicesDropdown.map((service, i) => (
            <motion.div key={service.name} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.1 }}>
             <Link
+             prefetch
              href={service.href}
              className="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition ml-2"
              onClick={() => setMobileMenuOpen(false)}
@@ -295,10 +299,10 @@ export default function Navbar() {
          </div>
         </div>
 
-        {/* CTA Mobile */}
+        {/* 🚀 CTA */}
         <Link
          href="/register"
-         className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-2xl font-bold text-center block mb-6 hover:from-blue-700"
+         className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-2xl font-bold text-center block mb-6 hover:from-blue-700 transition"
          onClick={() => setMobileMenuOpen(false)}
         >
          🚀 S'inscrire chez OMIIE
@@ -311,7 +315,6 @@ export default function Navbar() {
   </>
  );
 }
-
 
 // import { Link, usePage } from '@inertiajs/react';
 // import { AnimatePresence, motion } from 'framer-motion';
