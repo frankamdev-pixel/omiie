@@ -41,8 +41,8 @@
     <meta name="twitter:site" content="@frankamdev">
 
     {{-- Favicons --}}
-    <link id="favicon-light" rel="icon" type="image/png" href="/assets/logo-light.png">
-    <link id="favicon-dark" rel="icon" type="image/png" href="/assets/logo-dark.png">
+    <link id="favicon-light" rel="icon" type="image/png" href="/assets/logo.png">
+    <link id="favicon-dark" rel="icon" type="image/png" href="/assets/logo.png">
 
     <script>
         const darkMode = window.matchMedia('(prefers-color-scheme: dark)');
