@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Users, Target, Cpu, Globe, Shield, Database, Smartphone, BarChart3, Clock, MapPin, Phone, Mail, Award, Star, Quote, Briefcase, Code, Server, Cloud, Send, Check, ArrowRight } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { Link } from "@inertiajs/react";
 
 export default function About() {
  const services = [
@@ -70,7 +71,10 @@ export default function About() {
       whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255,255,255,0.3)" }}
       className="bg-white text-indigo-800 px-10 py-4 rounded-full font-bold text-lg shadow-2xl"
      >
-      Démarrez Votre Transformation <ArrowRight className="inline ml-2" />
+      <Link
+       prefetch
+       href='/contact'>Démarrez Votre Transformation <ArrowRight className="inline ml-2" /></Link>
+
      </motion.button>
     </motion.div>
    </section>
@@ -93,7 +97,7 @@ export default function About() {
      <motion.div initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }}>
       <div className="flex items-center gap-4 mb-6">
        <Globe className="w-10 h-10 text-purple-600" />
-       <h2 className="text-4xl font-bold">Notre Vision 2035</h2>
+       <h2 className="text-4xl font-bold">Notre Vision 2029</h2>
       </div>
       <p className="text-lg text-gray-700 mb-6">Devenir le leader incontesté en IT management en Afrique subsaharienne, équipant 100 000 entreprises avec des outils durables et éthiques.</p>
       <ul className="space-y-3 text-purple-700 font-medium">
@@ -248,7 +252,9 @@ export default function About() {
       whileHover={{ scale: 1.05 }}
       className="bg-blue-500 text-white px-12 py-4 rounded-full font-bold text-lg shadow-xl"
      >
-      Obtenir un Devis Gratuit <Send className="inline ml-2" />
+      <Link prefetch href="/devis">
+       Obtenir un Devis Gratuit <Send className="inline ml-2" />
+      </Link>
      </motion.button>
     </div>
    </section>

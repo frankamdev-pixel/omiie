@@ -138,7 +138,7 @@ export default function Navbar() {
          initial="hidden"
          animate="visible"
         >
-         Gratuit !
+         Gratuit
         </motion.div>
        </motion.div>
       )}

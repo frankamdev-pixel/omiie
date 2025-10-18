@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Cloud, Smartphone, BarChart3, Headphones, MapPin, Server, ArrowRightCircle, Globe, Cpu, Lock, Database } from "lucide-react";
+import { Shield, Cloud, Smartphone, BarChart3, Headphones, MapPin, Server, ArrowRightCircle, Globe, Cpu, Lock, Database, CheckCircle } from "lucide-react";
 import { Link } from "@inertiajs/react";
+import Navbar from "@/components/Navbar";
 
 export default function Services() {
  const [activeTab, setActiveTab] = useState("securite");
@@ -63,33 +64,38 @@ export default function Services() {
  };
 
  return (
-  <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+  <section className="py-24 bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50">
+   <Navbar />
    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
+    {/* Header Animé */}
     <motion.div
      initial={{ opacity: 0, y: 50 }}
      whileInView={{ opacity: 1, y: 0 }}
      viewport={{ once: true }}
+     transition={{ duration: 0.8 }}
      className="text-center mb-16"
     >
-     <h2 className="text-5xl font-extrabold text-indigo-900 mb-4 tracking-tight">Services OMIIE Pro</h2>
+     <h2 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 mb-4 tracking-tight">
+      Services OMIIE Pro
+     </h2>
      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-      Catalogue complet, organisé par catégories. Cliquez sur les tabs pour explorer. Chaque service inclut features clés.
+      Catalogue complet, organisé par catégories. Explorez avec fluidité. Chaque service avec features clés et CTA.
      </p>
     </motion.div>
 
+    {/* Tabs Sophistiquées */}
     <Tabs defaultValue="securite" className="space-y-12" onValueChange={setActiveTab}>
-     <TabsList className="flex flex-wrap justify-center gap-4 bg-transparent border-none">
+     <TabsList className="flex flex-wrap justify-center gap-4 bg-transparent border-none p-2 rounded-2xl bg-white/30 backdrop-blur-md shadow-inner">
       {Object.entries(categories).map(([key, cat]) => (
        <TabsTrigger
         key={key}
         value={key}
-        className="px-6 py-3 rounded-full data-[state=active]:bg-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg border border-indigo-200 hover:bg-indigo-50 transition-all"
+        className="px-6 py-3 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg border border-transparent data-[state=active]:border-white/20 hover:bg-white/20 transition-all duration-300 text-gray-800 hover:text-indigo-900"
        >
         <cat.icon className="w-5 h-5 mr-2" /> {cat.title.split(" &")[0]}
        </TabsTrigger>
       ))}
- </TabsList>
+     </TabsList>
 
      {Object.entries(categories).map(([key, cat]) => (
       <TabsContent key={key} value={key}>
@@ -100,10 +106,16 @@ export default function Services() {
          exit={{ opacity: 0, y: -20 }}
          transition={{ duration: 0.4 }}
         >
-         <Card className="border-none shadow-2xl rounded-3xl overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-white">
+         <Card className="border-none shadow-2xl rounded-3xl overflow-hidden bg-white">
+          <CardHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-white relative">
            <CardTitle className="text-3xl font-bold">{cat.title}</CardTitle>
            <CardDescription className="text-lg opacity-90 mt-2">{cat.desc}</CardDescription>
+           <motion.div
+            className="absolute top-4 right-4 p-3 bg-white/20 rounded-full"
+            whileHover={{ scale: 1.1, rotate: 360 }}
+           >
+            <cat.icon className="w-6 h-6" />
+           </motion.div>
           </CardHeader>
           <CardContent className="p-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
            {cat.services.map((service, i) => (
@@ -111,26 +123,38 @@ export default function Services() {
              key={service.title}
              initial={{ opacity: 0, scale: 0.95 }}
              animate={{ opacity: 1, scale: 1 }}
-             transition={{ delay: i * 0.1 }}
-             className="p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all border border-gray-100 hover:border-blue-300"
+             transition={{ delay: i * 0.1, duration: 0.5 }}
+             className="p-6 rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-300 hover:scale-[1.02]"
             >
              <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-blue-100 rounded-xl">
+              <motion.div
+               className="p-3 bg-blue-100 rounded-xl"
+               whileHover={{ rotate: 360 }}
+               transition={{ duration: 0.6 }}
+              >
                <service.icon className="w-6 h-6 text-blue-600" />
-              </div>
+              </motion.div>
               <h4 className="text-xl font-bold text-gray-800">{service.title}</h4>
-</div>
-             <p className="text-gray-600 mb-4">{service.desc}</p>
+             </div>
+             <p className="text-gray-600 mb-4 text-sm leading-relaxed">{service.desc}</p>
              <ul className="space-y-2 mb-6">
-              {service.features.map((feat) => (
-               <li key={feat} className="flex items-center gap-2 text-sm text-gray-700">
-                <ArrowRightCircle className="w-4 h-4 text-green-500" /> {feat}
-               </li>
+              {service.features.map((feat, j) => (
+               <motion.li
+                key={feat}
+                className="flex items-center gap-2 text-sm text-gray-700"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: j * 0.1 }}
+               >
+                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" /> {feat}
+               </motion.li>
               ))}
              </ul>
-             <Link href='/devis' className="w-full text-center px-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-green-600">
-              Devis Gratuit <ArrowRightCircle className="ml-2 w-4 h-4" />
-             </Link>
+             <Button asChild className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+              <Link prefetch href="/devis">
+               Devis Gratuit <ArrowRightCircle className="ml-2 w-4 h-4" />
+              </Link>
+             </Button>
             </motion.div>
            ))}
           </CardContent>
