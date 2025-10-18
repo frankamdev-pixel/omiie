@@ -1,6 +1,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Target, Cpu, Globe, Shield, Database, Smartphone, BarChart3, Clock, MapPin, Phone, Mail, Award, Star, Quote, Briefcase, Code, Server, Cloud, Send, Check, ArrowRight } from "lucide-react";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 export default function About() {
  const services = [
@@ -48,6 +50,7 @@ export default function About() {
  return (
   <div className="bg-gray-50 text-gray-800 overflow-hidden">
    {/* HERO - Immersif avec parallax */}
+   <Navbar />
    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900 text-white">
     <motion.div
      className="absolute inset-0 bg-black/40 z-0"
@@ -229,7 +232,7 @@ export default function About() {
       <div className="flex items-center justify-center gap-3">
        <Phone className="w-8 h-8" />
        <div>
-        <p className="font-bold">+237 6XX XXX XXX</p>
+        <p className="font-bold">+237 690 461 830</p>
         <p className="text-sm opacity-80">Appel 24/7</p>
        </div>
       </div>
@@ -251,14 +254,8 @@ export default function About() {
    </section>
 
    {/* FOOTER */}
-   <footer className="bg-gray-900 text-gray-300 py-8 px-6 text-center">
-    <p>© {new Date().getFullYear()} OMIIE — Tous droits réservés. Conçu avec passion au Cameroun.</p>
-    <div className="mt-4 flex justify-center gap-6">
-     <a href="#" className="hover:text-white">Politique de Confidentialité</a>
-     <a href="#" className="hover:text-white">Conditions d'Utilisation</a>
-     <a href="#" className="hover:text-white">Carrières</a>
-    </div>
-   </footer>
+
+   <Footer />
   </div>
  );
 }
