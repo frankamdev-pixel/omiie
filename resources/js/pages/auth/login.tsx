@@ -120,30 +120,30 @@
 
 
 
-import { useState } from 'react';
-import { useForm, Head } from '@inertiajs/react';
-import InputError from '@/components/input-error';
-import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
-import { Eye, EyeOff, LoaderCircle } from 'lucide-react';
+import { useState } from 'react'
+import { useForm, Head } from '@inertiajs/react'
+import InputError from '@/components/input-error'
+import TextLink from '@/components/text-link'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import AuthLayout from '@/layouts/auth-layout'
+import { Eye, EyeOff, LoaderCircle } from 'lucide-react'
 
 export default function Login({ status, canResetPassword }: { status?: string; canResetPassword: boolean }) {
  const { data, setData, post, processing, errors } = useForm({
   email: '',
   password: '',
   remember: false,
- });
+ })
 
- const [showPassword, setShowPassword] = useState(false);
+ const [showPassword, setShowPassword] = useState(false)
 
  const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  post('/login');
- };
+  e.preventDefault()
+  post('/login')
+ }
 
  return (
   <AuthLayout
@@ -169,7 +169,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
       <InputError message={errors.email} />
      </div>
 
-     {/* Mot de passe + Afficher */}
+     {/* Mot de passe */}
      <div className="grid gap-2 relative">
       <div className="flex items-center">
        <Label htmlFor="password">Mot de passe</Label>
@@ -196,18 +196,13 @@ export default function Login({ status, canResetPassword }: { status?: string; c
         onClick={() => setShowPassword(!showPassword)}
         className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700 dark:text-gray-400"
        >
-        {showPassword ? (
-         <EyeOff className="h-4 w-4" />
-        ) : (
-         <Eye className="h-4 w-4" />
-        )}
+        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
        </button>
       </div>
-
       <InputError message={errors.password} />
      </div>
 
-     {/* Remember me */}
+     {/* Se souvenir de moi */}
      <div className="flex items-center space-x-3">
       <Checkbox
        id="remember"
@@ -218,7 +213,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
       <Label htmlFor="remember">Se souvenir de moi</Label>
      </div>
 
-     {/* Bouton */}
+     {/* Bouton de connexion */}
      <Button type="submit" className="mt-4 w-full" disabled={processing}>
       {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
       Se connecter
@@ -237,5 +232,5 @@ export default function Login({ status, canResetPassword }: { status?: string; c
     </div>
    )}
   </AuthLayout>
- );
+ )
 }

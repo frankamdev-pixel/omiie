@@ -132,7 +132,7 @@ export default function Footer() {
      {/* Contact - Cards interactives (Tailwind shadow rare) */}
      <motion.div variants={itemVariants} className="text-center lg:text-left">
       <h4 className="text-xl font-bold mb-6 text-green-300 flex items-center justify-center lg:justify-start gap-2">
-       <FaEnvelope className="w-5 h-5" /> Contactez-nous
+       <FaEnvelope className="w-5 h-5" /> Contactez-nous directement
       </h4>
       <div className="space-y-4">
        <motion.div
