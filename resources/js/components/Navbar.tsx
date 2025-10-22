@@ -208,12 +208,13 @@ export default function Navbar() {
              </div>
             </div>
            </div>
-           <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50">
+           <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 text-blue-600 hover:bg-gray-50">
             <Home size={18} className="text-blue-600" /> Dashboard
            </Link>
-           <Link href="/settings/profile" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50">
+           <Link href="/settings/profile" className="flex items-center hover:padding-[4px] transition-all gap-3 text-blue-600 px-4 py-3 hover:bg-gray-50">
             <User size={18} className="text-indigo-600" /> Profil
            </Link>
+           <hr />
            <Link href="/logout" method="post" as="button" className="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50">
             <LogOut size={18} /> Déconnexion
            </Link>
