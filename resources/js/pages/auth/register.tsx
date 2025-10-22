@@ -92,7 +92,7 @@ export default function Register() {
       <InputError message={errors.password_confirmation} />
      </div>
 
-     
+
      <Button type="submit" className="mt-2 w-full" disabled={processing}>
       {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
       Créer un compte
@@ -108,6 +108,16 @@ export default function Register() {
   </AuthLayout>
  )
 }
+
+
+
+
+
+
+
+
+
+
 
 
 // import { Form, Head, useForm } from '@inertiajs/react';
@@ -241,6 +251,12 @@ export default function Register() {
 // }
 
 
+
+
+
+
+
+
 // import { useForm } from '@inertiajs/react';
 // import { LoaderCircle } from 'lucide-react';
 // import { useState } from 'react';
@@ -345,3 +361,14 @@ export default function Register() {
 //     </AuthLayout>
 //   );
 // }
+
+
+
+
+
+
+
+
+
+
+
