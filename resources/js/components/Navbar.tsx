@@ -100,11 +100,29 @@ export default function Navbar() {
   <>
    {/* NAVBAR ÉLITE */}
    <motion.nav
-    className="fixed top-0 z-50 w-full bg-[#2563EB] backdrop-blur-lg shadow-lg border-b border-white/20"
+    className="fixed top-0 z-50 w-full  bg-gradient-to-b from-blue-500 to-indigo-900 shadow-lg transition-colors duration-500 border-b border-white/20"
     variants={navVariants}
     initial="hidden"
     animate="visible"
    >
+
+
+    <div className="absolute inset-0 pointer-events-none">
+     {[...Array(50)].map((_, i) => (
+      <div
+       key={i}
+       className="absolute bg-white rounded-full opacity-80 animate-star"
+       style={{
+        width: `${Math.random() * 3 + 1}px`,
+        height: `${Math.random() * 3 + 1}px`,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${Math.random() * 10 + 5}s`,
+        animationDelay: `${Math.random() * 5}s`,
+       }}
+      />
+     ))}
+    </div>
     <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
      {/* 🌟 LOGO ANIMÉ */}
      <motion.div variants={itemVariants}>
@@ -118,7 +136,7 @@ export default function Navbar() {
          <img src="/assets/logo.png" className="h-10" alt="logo omiie" />
         </div>
         <motion.div
-         className="absolute -inset-1 bg-gradient-to-r from-white to-blue-100 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-500"
+         className="absolute -inset-1 bg-gradient-to-r from-white to-blue-400 rounded-2xl blur-full opacity-75 group-hover:opacity-100 transition duration-500"
          initial={{ scale: 0 }}
          whileHover={{ scale: 1 }}
         />
