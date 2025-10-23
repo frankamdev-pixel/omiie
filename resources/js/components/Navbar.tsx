@@ -76,7 +76,7 @@ export default function Navbar() {
  }, []);
 
  const menuLinks = [
-  { name: 'Accueil', icon: Home, href: '/', color: 'text-white' },
+  { name: 'Accueild', icon: Home, href: '/', color: 'text-white' },
   { name: 'Solutions', icon: Shield, href: '/services', color: 'text-white' },
   { name: 'À propos', icon: Info, href: '/about', color: 'text-white' },
   { name: 'Faire un don', icon: Info, href: '/donate', color: 'text-white' },
