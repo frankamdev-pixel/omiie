@@ -3,7 +3,7 @@
         'name' => 'laravel/react-starter-kit',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '2890febbffd6c0083d48e8df4dc2e237c142b21e',
+        'reference' => 'ae8d98acc918f8b094398aecbb5e75b0f33140aa',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -409,6 +409,15 @@
                 0 => '*',
             ),
         ),
+        'ladumor/laravel-pwa' => array(
+            'pretty_version' => 'v0.0.5',
+            'version' => '0.0.5.0',
+            'reference' => '50613c526cae7f7637a73afe634a5423d745697c',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ladumor/laravel-pwa',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'laravel/fortify' => array(
             'pretty_version' => 'v1.31.1',
             'version' => '1.31.1.0',
@@ -457,7 +466,7 @@
         'laravel/react-starter-kit' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '2890febbffd6c0083d48e8df4dc2e237c142b21e',
+            'reference' => 'ae8d98acc918f8b094398aecbb5e75b0f33140aa',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
