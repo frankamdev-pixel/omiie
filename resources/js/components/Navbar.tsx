@@ -232,7 +232,7 @@ export default function Navbar() {
            <Link href="/settings/profile" className="flex items-center hover:padding-[4px] transition-all gap-3 text-blue-600 px-4 py-3 hover:bg-gray-50">
             <User size={18} className="text-indigo-600" /> Profil
            </Link>
-           <hr />
+           <hr className='w-1/5 text-center border-gray-400 border-solid' />
            <Link href="/logout" method="post" as="button" className="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50">
             <LogOut size={18} /> Déconnexion
            </Link>

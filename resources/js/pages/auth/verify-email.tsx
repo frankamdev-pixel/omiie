@@ -1,7 +1,4 @@
-// Components
-import EmailVerificationNotificationController from '@/actions/App/Http/Controllers/Auth/EmailVerificationNotificationController';
-import { logout } from '@/routes';
-import { Form, Head } from '@inertiajs/react';
+import { Form, router, Head } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
 import TextLink from '@/components/text-link';
@@ -9,6 +6,11 @@ import { Button } from '@/components/ui/button';
 import AuthLayout from '@/layouts/auth-layout';
 
 export default function VerifyEmail({ status }: { status?: string }) {
+ function handleResend(e: React.FormEvent) {
+  e.preventDefault();
+  router.post('/email/verification-notification');
+
+ }
     return (
         <AuthLayout
             title="Verify email"
@@ -23,28 +25,25 @@ export default function VerifyEmail({ status }: { status?: string }) {
                 </div>
             )}
 
-            <Form
-                {...EmailVerificationNotificationController.store.form()}
-                className="space-y-6 text-center"
-            >
-                {({ processing }) => (
-                    <>
-                        <Button disabled={processing} variant="secondary">
-                            {processing && (
-                                <LoaderCircle className="h-4 w-4 animate-spin" />
-                            )}
-                            Resend verification email
-                        </Button>
+      <Form onSubmit={handleResend} className="space-y-6 text-center">
+       {({ processing }) => (
+        <>
+         <Button disabled={processing} variant="secondary">
+          {processing && (
+           <LoaderCircle className="h-4 w-4 animate-spin" />
+          )}
+          Resend verification email
+         </Button>
 
-                        <TextLink
-                            href={logout()}
-                            className="mx-auto block text-sm"
-                        >
-                            Log out
-                        </TextLink>
-                    </>
-                )}
-            </Form>
+         <TextLink
+          href="/logout"
+          className="mx-auto block text-sm"
+         >
+          Log out
+         </TextLink>
+        </>
+       )}
+      </Form>
         </AuthLayout>
     );
 }
